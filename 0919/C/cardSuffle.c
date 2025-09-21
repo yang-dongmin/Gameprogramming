@@ -1,3 +1,4 @@
+//터미널에서 chcp 65001 입력 후 실행하면 특수문자 깨짐 해결
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -19,6 +20,7 @@ int main(void)
     make_card(card);
     shuffle_card(card);
     display_card(card);
+    
     return 0;
 }
 
