@@ -24,8 +24,8 @@ int main(void)
 	clock_t start, end;		  // 시작, 종료 시간
 	double pst;				  // 경과 시간
 	int limit_time;			  // 제한 시간
-	int limit_move = -1;	  // 이동 회수 제한
-	char answer;			  // 이동 회수 제한 여부
+	int limit_move = -1;	  // 이동 횟수 제한
+	char answer;			  // 이동 횟수 제한 여부
 
 	srand(time(NULL));
 	system("cls");
@@ -76,7 +76,7 @@ int main(void)
 	printf("제한시간(초)을 입력하세요 : ");
 	scanf("%d", &limit_time);
 
-	printf("최대 이동 회수를 설정하시겠습니까? (Y/N) : ");
+	printf("최대 이동 횟수를 설정하시겠습니까? (Y/N) : ");
 	while (1)
 	{
 		scanf(" %c", &answer); // 공백 포함해서 이전 엔터 무시
@@ -84,7 +84,7 @@ int main(void)
 		{
 			do
 			{
-				printf("최대 이동 회수를 입력하세요: ");
+				printf("최대 이동 횟수를 입력하세요: ");
 				if (scanf("%d", &limit_move) != 1 || limit_move < 1)
 				{
 					printf("1 이상의 숫자를 입력하세요.\n");
@@ -350,7 +350,7 @@ void game_control(int tx[], int ty[], boolean *gameover, int map_x, int map_y, i
 			if (move_count > limit_move && limit_move != -1)
 			{
 				gotoxy(1, map_y + 7);
-				printf("이동 회수 초과! 게임을 종료합니다.\n");
+				printf("이동 횟수 초과! 게임을 종료합니다.\n");
 				getch();
 				*gameover = TRUE;
 				return;
@@ -359,11 +359,11 @@ void game_control(int tx[], int ty[], boolean *gameover, int map_x, int map_y, i
 		gotoxy(1, map_y + 4);
 		if (limit_move > 1)
 		{
-			printf("이동 회수 : %d / %d", move_count, limit_move);
+			printf("이동 횟수 : %d / %d", move_count, limit_move);
 		}
 		else
 		{
-			printf("이동 회수 : %d", move_count);
+			printf("이동 횟수 : %d", move_count);
 		}
 		Sleep(10);
 	}
