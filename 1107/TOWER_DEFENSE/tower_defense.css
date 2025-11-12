@@ -1,0 +1,231 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #333;
+    color: white;
+    margin: 0;
+    padding: 1rem 0; /* 상하 여백 추가 */
+}
+
+#gameWrapper {
+    width: 866px; 
+}
+
+#gameCanvas {
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    cursor: pointer;
+    flex-shrink: 0; 
+}
+
+#uiPanel {
+    font-size: 1.25rem;
+    margin: 1rem;
+    display: flex;
+    gap: 2rem;
+    padding-left: 1rem;
+    margin: 1rem 0;
+}
+
+button {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem; 
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+}
+
+#gameOver {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#restartButton {
+    background-color: #008CBA;
+}
+
+#nextWaveButton {
+    background-color: #f44336;
+}
+
+#nextWaveButton:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+}
+
+
+.game-container {
+    position: relative; 
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start; 
+}
+
+#towerInfoPanel {
+    width: 250px;
+    background-color: #444;
+    padding: 0.8rem; 
+    border-radius: 8px;
+    box-sizing: border-box; 
+    height: 450px; 
+}
+
+#towerInfoPanel h3,
+#towerInfoPanel h4 {
+    margin-top: 0;
+    text-align: center;
+    margin-bottom: 0.5rem; 
+}
+
+#towerInfoPanel p {
+    margin: 0.3rem 0; 
+    font-size: 1rem;  
+}
+
+#towerInfoPanel hr {
+    margin: 0.5rem 0; 
+}
+
+canvas:hover {
+    cursor: crosshair;
+}
+
+.grid-hover {
+    fill: rgba(0, 255, 0, 0.3);
+    transition: fill 0.15s ease;
+}
+
+#panelTitle { margin: 0 0 0.75rem 0; }
+
+.towerBtn {
+  width: 100%;
+  padding: 18px 8px; 
+  margin: 5px 0;
+  border: none;
+  border-radius: 6px;
+  background-color: #008CBA;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+#towerDetailSection .towerBtn {
+    padding: 10px 8px;  
+    font-size: 0.9rem; 
+    margin: 4px 0;     
+}
+
+
+.towerBtn:hover {
+  background-color: #00aaff;
+}
+
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+
+/* ▼ [삭제] 웨이브 컨트롤 UI ( .wave-controls ) */
+/* (이전 .wave-controls 스타일 삭제) */
+
+
+/* ▼▼▼ 다음 웨이브 UI (수평 레이아웃) ▼▼▼ */
+#nextWaveInfo {
+    width: 866px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    visibility: visible;
+    margin-top: 1rem; /* gameWrapper와의 간격 */
+    
+    /* flex로 수평 정렬 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* 몹 종류가 너무 많으면 줄바꿈 */
+    min-height: 2.5rem; /* 높이 고정 (흔들림 방지) */
+}
+
+#nextWaveInfo h4 {
+    margin: 0 10px 0 0; /* 오른쪽 여백 */
+    padding: 0;
+    border-bottom: none; /* 밑줄 제거 */
+    font-size: 1rem;
+}
+
+#nextWaveInfo ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex; /* 몹 리스트 수평 정렬 */
+}
+
+#nextWaveInfo li {
+    margin: 0 10px; /* 좌우 여백 */
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+}
+/* ▲▲▲ 다음 웨이브 UI (수평 레이아웃) ▲▲▲ */
+
+
+/* ▼▼▼ 버튼 컨테이너 (신규) ▼▼▼ */
+.wave-buttons {
+    width: 866px;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem; /* nextWaveInfo와의 간격 */
+}
+
+.wave-buttons button {
+    margin-top: 0; /* body의 button 기본 여백 제거 */
+}
+/* ▲▲▲ 버튼 컨테이너 (신규) ▲▲▲ */
+
+
+/* 몹 타입별 색상 표시 */
+#nextWaveInfo li span {
+    width: 12px;
+    height: 12px;
+    margin-right: 6px;
+    border: 1px solid rgba(0,0,0,0.2);
+}
+.enemy-basic { background-color: #d9534f; }
+.enemy-fast { background-color: #f0ad4e; }
+.enemy-tank { background-color: #5bc0de; }
+.enemy-ninja { background-color: #444444; }
+
+
+/* 2배속 버튼 활성 스타일 */
+#gameSpeedButton.active {
+    background-color: #4CAF50; 
+    box-shadow: 0 0 10px #4CAF50;
+}
